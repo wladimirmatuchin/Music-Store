@@ -1,0 +1,22 @@
+{{> _noplayer}}
+
+{{#hassearches}}
+<table class="table table-condensed table-striped table-hover">
+<thead>
+<tr>
+<th>Search string</th>
+</tr>
+</thead>
+
+<tbody>
+{{#../searches}}
+<tr>
+<td><a href="/search?q={{search}}">{{search}}</a></td>
+</tr>
+{{/../searches}}
+</tbody>
+</table>
+{{/hassearches}}
+{{^hassearches}}
+No track searches found!
+{{/hassearches}}

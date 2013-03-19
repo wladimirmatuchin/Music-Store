@@ -1,0 +1,89 @@
+{{> _player}}
+
+{{#contentFor "scripts"}}
+<script src="/javascripts/search.js"></script>
+
+<script>
+    var audioTracks = {{{tracksjson}}};
+</script>
+{{/contentFor}}
+
+<style>
+    form select {
+        width: 185px;
+    }
+</style>
+
+{{#contentFor "sidebar"}}
+<ul class="nav nav-list">
+    <li class="nav-header section-header">My playlists</li>
+    <li><a href="/favorites">My favorites</a></li>
+    {{#playlists}}
+    <li><a href="/playlist/{{id}}">{{name}}</a></li>
+    {{/playlists}}
+
+
+    <li class="nav-header section-header">Similar searches</li>
+    {{#searches}}
+    <li><a href="/search?q={{search}}">{{search}}</a></li>
+    {{/searches}}
+    {{^searches}}
+    <span class="label" style="margin: 10px 0;">No similar searches</span>
+    {{/searches}}
+
+
+    <li class="nav-header section-header">Filter search results</li>
+    <form method="get">
+        <input type="hidden" name="q" value="{{search}}">
+
+        <li>Genre:
+        <div style="float: right;">
+            <select name="genre" class="search-filter-genre" style="font-size: 10px;">
+                <option value="">-</option>
+                {{#genres}}
+                <option value="{{genre}}" {{selected}}>{{genre}}</option>
+                {{/genres}}
+            </select>
+        </div>
+        </li>
+
+        <li>Instrument:
+        <div style="float: right;">
+            <select name="instrument" class="search-filter-instrument" style="font-size: 10px;">
+                <option value="">-</option>
+                {{#instruments}}
+                <option value="{{instrument}}" {{selected}}>{{instrument}}</option>
+                {{/instruments}}
+            </select>
+        </div>
+        </li>
+
+        <li>Tempo:
+        <div style="float: right;">
+            <select name="tempo" class="search-filter-tempo" style="font-size: 10px;">
+                <option value="">-</option>
+                {{#tempos}}
+                <option value="{{tempo}}" {{selected}}>{{tempo}}</option>
+                {{/tempos}}
+            </select>
+        </div>
+        </li>
+
+        <li>Type:
+        <div style="float: right;">
+            <select name="type" class="search-filter-type" style="font-size: 10px;">
+                <option value="">-</option>
+                {{#types}}
+                <option value="{{type}}" {{selected}}>{{type}}</option>
+                {{/types}}
+            </select>
+        </div>
+        </li>
+    </form>
+</ul>
+{{/contentFor}}
+
+{{> _addtopl}}
+
+{{> _tracklist}}
+

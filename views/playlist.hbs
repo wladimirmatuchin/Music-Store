@@ -1,0 +1,38 @@
+{{> _player}}
+
+{{#contentFor "scripts"}}
+<script src="/javascripts/playlist.js"></script>
+
+<script>
+    var thisPlaylistId = "{{playlistid}}";
+    var audioTracks = {{{tracksjson}}};
+</script>
+{{/contentFor}}
+
+
+{{#contentFor "sidebar"}}
+{{> _playlists}}
+{{/contentFor}}
+
+
+<form method="post" action="/playlist/removetrack">
+    <div class="modal hide fade track-removefrompl">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Remove track from playlist</h3>
+        </div>
+        <input type="hidden" class="track-id" name="trackid" value="">
+        <input type="hidden" class="playlist-id" name="playlistid" value="">
+        <div class="modal-body">
+            Are you sure you want to remove "<span class="track-title"></span>" from this
+            playlist?<br><br>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-danger">Remove from playlist</button>
+        </div>
+    </div>
+</form>
+
+
+{{> _tracklist}}

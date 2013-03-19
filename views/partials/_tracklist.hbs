@@ -1,0 +1,49 @@
+{{#contentFor "scripts"}}
+<script src="/javascripts/favorites.js"></script>
+{{/contentFor}}
+
+{{#hastracks}}
+<table class="table table-condensed table-striped table-hover music-track-table">
+    <thead>
+        <tr class="section-header">
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Type</th>
+            <th>Mood</th>
+            <th style="">Instrument</th>
+            <th>Length</th>      
+            <th>Tempo</th>
+            <th><img src="/images/icon-favorite-top.png" class="track-list-h-favor"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#../tracks}}
+        <tr trackid="{{id}}" class= "track-row">
+            <td style="text-transform: capitalize;"><input class="option_tracklist" type="checkbox"> &nbsp;{{track_title_pretty}}</td>
+            <td style="text-transform: capitalize;">{{genre_pretty}}</td>
+            <td>{{type}}</td>
+            <td>{{mood}}</td>
+            <td style="">{{instrument}}</td>
+            <td>{{_length length}}</td>
+            <td>{{tempo}}</td>
+            <td>
+                {{#if idfavor}}
+                    <img src="/images/icon-favorite-on.png" class="music-control music-control-favorite">
+                {{else}}
+                    <img src="/images/icon-favorite-off.png" class="music-control music-control-favorite">
+                {{/if}}
+
+
+                <i class="icon-white icon-remove-sign hide music-control control-remove"></i>
+            </td>
+        </tr>
+        {{/../tracks}}
+    </tbody>
+
+</table>
+{{/hastracks}}
+{{^hastracks}}
+No tracks found!
+{{/hastracks}}
+
